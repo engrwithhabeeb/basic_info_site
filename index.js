@@ -1,5 +1,7 @@
-import http from "http";
-import fs from "fs";
+const express = require("express");
+const app = express();
+
+const PORT = 5757;
 
 const routes = {
   "/": "index.html",
@@ -7,27 +9,20 @@ const routes = {
   "/contact_me": "contact_me.html",
 };
 
-function sendFile(fileName, callBack) {
-  fs.readFile(fileName, callBack);
-}
-const server = http.createServer((req, res) => {
-  let fileName = routes[req.url];
-
-  if (!fileName) {
-    res.statusCode = 404;
-    fileName = "404.html";
-  }
-
-  sendFile(fileName, (err, data) => {
-    if (err) {
-      res.statusCode = 500;
-      res.end("Internal server error");
-      return;
-    }
-    res.end(data);
+Object.entries(routes).forEach(([route, file]) => {
+  app.get(route, (req, res) => {
+    res.sendFile(file, { root: __dirname }, (err) => {
+      if (err) {
+        res.status(500).send("Internal server error");
+      }
+    });
   });
 });
 
-server.listen(8080, () => {
-  console.log("Server running at localhost:8080");
+app.get("*any", (req, res) => {
+  res.sendFile("404.html", { root: __dirname });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at localhost:${PORT}`);
 });
