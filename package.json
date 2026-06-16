@@ -1,0 +1,21 @@
+{
+  "name": "basic_info_site",
+  "version": "1.0.0",
+  "description": "A basic informational website built with Node.js to practice creating an HTTP server, handling and parsing incoming requests, reading HTML files from the file system, and returning appropriate responses to the client.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engrwithhabeeb/basic_info_site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/engrwithhabeeb/basic_info_site/issues"
+  },
+  "homepage": "https://github.com/engrwithhabeeb/basic_info_site#readme"
+}
